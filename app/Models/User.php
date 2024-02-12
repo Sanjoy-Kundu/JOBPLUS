@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
 
- protected $attributes = ['role' => 'cadidates'];
+ protected $attributes = ['role' => 'candidate'];
 
 
 
