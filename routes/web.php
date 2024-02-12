@@ -18,3 +18,5 @@ Route::post("/user-login", [UserController::class, "userLogin"]);
 
 Route::post("/user-registration-employer", [UserController::class, "userRegistration"]);
 Route::post("/user-registration-candidate", [UserController::class, "userRegistration"]);
+
+Route::get("/user-profile", [UserController::class, "userProfile"])->middleware(["auth:sanctum"]);
