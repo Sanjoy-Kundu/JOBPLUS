@@ -108,7 +108,6 @@ class UserController extends Controller
       try{
         $userId = Auth::id();
         $newPassword = $request->input("password");
-
         User::where("id",$userId)->update([
             "password" => Hash::make($newPassword)
         ]);
@@ -116,5 +115,29 @@ class UserController extends Controller
       }catch(Exception $ex){
         return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
       }
+    }
+
+
+    public function sendOtpForForgetPassword(Request $request){
+        try{
+        // $request->validate([
+        //     "email" => "required"
+        // ],[
+        //     "email.required" => "Please Enter Your Email"
+        // ]);
+        $randomOtp = rand(1000,9999);
+        $email = Str::lower($request->input("email"));
+
+        $countEmail = User::where("email","=",$email)->count();
+        if($countEmail){
+            return "milse";
+        }else{
+            return "mile nai";
+        }
+
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+     
     }
 }
