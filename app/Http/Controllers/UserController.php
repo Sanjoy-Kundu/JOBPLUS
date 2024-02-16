@@ -142,6 +142,10 @@ class UserController extends Controller
         }catch(Exception $ex){
             return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
         }
-     
+    }
+
+
+    public function verifyotpforgetPassword(Request $request){
+        return "im verify otp";
     }
 }
