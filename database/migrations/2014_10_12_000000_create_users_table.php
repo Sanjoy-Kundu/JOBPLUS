@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string("role")->comment("owner,companies,cadidates");
+            $table->string('name',150);
+            $table->string('email',150)->unique();
+            $table->string('password',1000);
+            $table->string("role",150)->comment("owner,companies,cadidates");
+            $table->string("otp",20);
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
         });

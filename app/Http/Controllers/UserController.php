@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OtpMail;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -127,12 +129,14 @@ class UserController extends Controller
         // ]);
         $randomOtp = rand(1000,9999);
         $email = Str::lower($request->input("email"));
-
         $countEmail = User::where("email","=",$email)->count();
+
         if($countEmail){
-            return "milse";
+            //return "milse";
+            Mail::to($email)->send(new OtpMail($randomOtp));
+            return response()->json(["status" => "success", "message" => "Your code has been send successfully"]);
         }else{
-            return "mile nai";
+            return response()->json(["status" => "fail", "message" => "Invalid Email"]);
         }
 
         }catch(Exception $ex){

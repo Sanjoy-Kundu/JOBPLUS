@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
 
- protected $attributes = ['role' => 'candidate'];
+ protected $attributes = ['role' => 'candidate', "otp"=>"0"];
 
 
 
