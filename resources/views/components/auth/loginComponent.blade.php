@@ -14,19 +14,21 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/backend')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/backend')}}/css/toastify.min.css" rel="stylesheet" type="text/css">
 
 
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
+    <script src="{{asset('assets/backend')}}/js/config.js"></script>
+    <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
 
 </head>
 
 <body class="bg-gradient-info">
 
-    <div class="progress d-none" style="height: 3px;">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress" style="height: 3px;">
+        <div class="progress-bar bg-warning d-none" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
     <div class="container">
@@ -45,7 +47,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <section class="user" id="login-form">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                         </div>
@@ -62,7 +64,7 @@
                                         {{-- <a href="index.html" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </a> --}}
-                                        <button class="btn btn-primary btn-user btn-block">LOGIN</button>
+                                        <button class="btn btn-primary btn-user btn-block" onclick="userLogin()">LOGIN</button>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -70,7 +72,7 @@
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
-                                    </form>
+                                    </section>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="{{url('/jobpuls-forget-password')}}" target="_blank">Forgot Password?</a>
@@ -91,6 +93,39 @@
 
     </div>
 
+    <script>
+      async  function userLogin(){
+            let email      = document.getElementById("email").value;
+            let password  = document.getElementById("password").value;
+
+            if(email === ""){
+                errorToast("Name field is required")
+            }else if(password === ""){
+                errorToast("password is required")
+            }else if(password.length < 3){
+                errorToast("password length must be 4 charater or more")
+            }else{
+
+                let postData = {
+                email:email,
+                password:password
+            }
+            let res = await axios.post("/user-login",postData)
+            if(res.data["status"] === "success"){
+                alert("login successfully")
+                window.location.href="/dashboard"
+            }
+            //console.log(res.data);
+            }
+
+
+
+
+         
+            
+        }
+        
+    </script>
 
 
 
@@ -103,7 +138,6 @@
 
 
 
-    
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('assets/backend')}}/vendor/jquery/jquery.min.js"></script>
@@ -114,6 +148,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('assets/backend')}}/js/sb-admin-2.min.js"></script>
+    
 
 </body>
 
