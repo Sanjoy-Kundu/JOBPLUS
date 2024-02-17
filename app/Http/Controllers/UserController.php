@@ -134,6 +134,7 @@ class UserController extends Controller
         if($countEmail){
             //return "milse";
             Mail::to($email)->send(new OtpMail($randomOtp));
+            User::where("email","=",$email)->update(["otp" =>$randomOtp]);
             return response()->json(["status" => "success", "message" => "Your code has been send successfully"]);
         }else{
             return response()->json(["status" => "fail", "message" => "Invalid Email"]);
@@ -146,6 +147,24 @@ class UserController extends Controller
 
 
     public function verifyotpforgetPassword(Request $request){
-        return "im verify otp";
+        try{
+            $request->validate([
+                "email" => "required",
+                "otp"  => "required"
+            ]);
+            $email = $request->input("email");
+            $otp = $request->input("otp");
+            $count = User::where("email","=",$email)->where("otp","=",$otp)->first();
+            if(!$count){
+                return response()->json(["status" => "fail", "message" => "Invalid Otp"]);
+            }else{
+                User::where("email","=",$email)->update(["otp" => "0"]);
+                $token = $count->createToken('authToken')->plainTextToken;
+                return response()->json(["status" => "success", "message" => "Your Otp VerifySuccessfully", "token" => $token]);
+            }
+
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
     }
 }
