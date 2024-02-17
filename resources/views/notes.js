@@ -4,6 +4,13 @@
 3. candidate + admin + companies added with profile deletes by postman
 4. user profile edit and password reset completed succesfully
 5. smtp setup for mail (forget password set)
-6.users table e otp add korte vule geci  
+6.users table e otp add korte vule geci 
+7.user talble complete 
+8.update passowrd complete by forget password
+
+
+
+9. login page setup 
+10. (User login) (companies login) (candidate login ) forget password and reset password added completed forntend
 
 */

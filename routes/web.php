@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get("/jobpuls-registration", [UserController::class, "jobplusRegistration"]);
+Route::get("/jobpuls-registration-companies", [UserController::class, "jobplusRegistrationCompanies"]);
+Route::get("/jobpuls-login", [UserController::class, "jobpulseLogin"]);
+Route::get("/jobpuls-forget-password", [UserController::class, "jobpulsForgetPassword"]);
+Route::get('/jobplus-otp-page', [UserController::class,"otp"]);
+
+
+
+
 Route::post("/user-login-admin", [UserController::class, "userLogin"]);
 Route::post("/user-login", [UserController::class, "userLogin"]);
 

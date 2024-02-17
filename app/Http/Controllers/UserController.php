@@ -10,9 +10,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
+    public function jobpulseLogin():View{
+        return view('pages.users.loginPage');
+    }
+
+    public function jobpulsForgetPassword():View{
+        return view('pages.users.forgetPasswordPage');
+    }
+
+
+    public function jobplusRegistration():View{
+        return view('pages.users.registrationPage');
+    }
+
+    public function jobplusRegistrationCompanies():View{
+        return view('pages.users.registrationCompaniesPage');
+    }
+
+    public function otp():View{
+        return view("pages.users.otpPage");
+    }
 
     // both login (owner + companies + candidate)
     public function userLogin(Request $request){
@@ -119,6 +141,8 @@ class UserController extends Controller
       }
     }
 
+
+    
 
     public function sendOtpForForgetPassword(Request $request){
         try{
