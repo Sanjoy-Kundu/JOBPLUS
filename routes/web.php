@@ -18,7 +18,7 @@ Route::get("/jobpuls-registration-companies", [UserController::class, "jobplusRe
 Route::get("/jobpuls-login", [UserController::class, "jobpulseLogin"]);
 Route::get("/jobpuls-forget-password", [UserController::class, "jobpulsForgetPassword"]);
 Route::get('/jobplus-otp-page', [UserController::class,"otp"]);
-
+Route::get('/jobpuls-reset-password', [UserController::class, "resetPasswordFrom"]);
 
 
 
@@ -41,6 +41,12 @@ Route::post("/user-password-reset", [UserController::class, "userPasswordReset"]
 Route::post("/sendOtp",                     [UserController::class, "sendOtpForForgetPassword"]);
 Route::post("/verify-otp",                  [UserController::class, "verifyotpforgetPassword"]);
 Route::post("/forget-reset-password-otp",   [UserController::class, "forgetResetPasswordOtp"])->middleware(["auth:sanctum"]);
+
+
+
+
+//user dashboard 
+Route::get("/dashboard", [UserController::class, "dashboard"]);
 
 
 

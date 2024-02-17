@@ -20,10 +20,15 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
 
 </head>
 
 <body class="bg-gradient-primary">
+
+    <div class="progress d-none" style="height: 3px;">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
 
     <div class="container">
 
@@ -35,33 +40,32 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account! as Companies Profile</h1>
                             </div>
                             <form class="user">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user readonly" id="exampleInputEmail"value="companies">
+                                    <input type="text" class="form-control form-control-user readonly" name="role" id="role"value="companies">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
-                                    </div>
-                                </div>
+                            
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                    <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Enter Your Name">
                                 </div>
-                         
+
+
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address">
+                                </div>
+
+                            
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input type="password" class="form-control form-control-user"id="cpassword" name="cpassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account </a>
+                                <button class="btn btn-primary btn-user btn-block">REGISTRATION</button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block"><i class="fab fa-google fa-fw"></i> Register with Google </a>
                                 <a href="index.html" class="btn btn-facebook btn-user btn-block"> <i class="fab fa-facebook-f fa-fw"></i> 

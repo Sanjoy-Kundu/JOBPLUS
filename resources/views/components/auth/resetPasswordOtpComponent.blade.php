@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>otp</title>
+    <title>Reset Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('assets/backend')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,11 +28,9 @@
 
     <div class="progress d-none" style="height: 3px;">
         <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-
+    </div>
 
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -46,25 +44,19 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Now Write Your Four digit Otp</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">Reset Your Password</h1>
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user"
+                                            <input type="password" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Your Otp">
+                                                placeholder="Enter Your New Password">
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block">
-                                           SUBMIT
+                                           RESET
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="{{url('/jobpuls-registration')}}" target="_blank">Create an Account!</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" target="_blank" href="{{url("/jobpuls-login")}}">Already have an account? Login!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
