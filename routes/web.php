@@ -23,15 +23,15 @@ Route::post("/user-registration-candidate", [UserController::class, "userRegistr
 
 
 
-Route::get("/user-profile",        [UserController::class, "userProfile"])->middleware(["auth:sanctum"]);
+Route::get("/user-profile",         [UserController::class, "userProfile"])->middleware(["auth:sanctum"]);
 Route::post("/user-profile-update", [UserController::class, "userProfileUpdate"])->middleware(["auth:sanctum"]);
 Route::post("/user-password-reset", [UserController::class, "userPasswordReset"])->middleware(["auth:sanctum"]);
 
 
 
-Route::post("/sendOtp", [UserController::class, "sendOtpForForgetPassword"]);
-Route::post("/verify-otp", [UserController::class, "verifyotpforgetPassword"]);
-
+Route::post("/sendOtp",                     [UserController::class, "sendOtpForForgetPassword"]);
+Route::post("/verify-otp",                  [UserController::class, "verifyotpforgetPassword"]);
+Route::post("/forget-reset-password-otp",   [UserController::class, "forgetResetPasswordOtp"])->middleware(["auth:sanctum"]);
 
 
 

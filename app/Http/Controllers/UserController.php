@@ -167,4 +167,20 @@ class UserController extends Controller
             return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
         }
     }
+
+
+
+    public function forgetResetPasswordOtp(Request $request){
+        try{
+            $request->validate([
+                "password" => "required"
+            ]);
+            $id = Auth::id();
+            $newPassword = $request->input("password");
+            User::where("id","=",$id)->update(["password" => Hash::make($newPassword)]);
+            return response()->json(["status" => "success", "message" => "User Password Updated Successfully"]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+    }
 }
