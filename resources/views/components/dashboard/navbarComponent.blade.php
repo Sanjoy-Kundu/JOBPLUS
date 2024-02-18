@@ -219,3 +219,26 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+
+                {{-- <script>
+                    getProfile()
+                    async function getProfile(){
+                        let res = await axios.get("/user-profile",HeaderToken())
+                        console.log(res)
+                    }
+                </script> --}}
+<script>
+    
+    getProfile()
+    async function getProfile(){
+        try{
+            let res = await axios.get("/user-profile",HeaderToken())
+            console.log(res.data["data"])
+        }
+        catch(e){
+            console.log(e)
+        }
+       
+    }
+</script>

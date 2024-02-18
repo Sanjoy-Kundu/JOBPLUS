@@ -28,7 +28,7 @@
 <body class="bg-gradient-info">
 
     <div class="progress" style="height: 3px;">
-        <div class="progress-bar bg-warning d-none" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning d-none" id="loader" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
     <div class="container">
@@ -109,20 +109,20 @@
                 let postData = {
                 email:email,
                 password:password
+                }
+
+                showLoader()
+                let res = await axios.post("/user-login",postData)
+                hideLoader()
+
+
+                if(res.data["status"] === "success"){
+                    setToken(res.data["token"])
+                    successToast(res.data["message"])
+                    window.location.href="/dashboard"
+                }
+                //console.log(res.data);
             }
-            let res = await axios.post("/user-login",postData)
-            if(res.data["status"] === "success"){
-                alert("login successfully")
-                window.location.href="/dashboard"
-            }
-            //console.log(res.data);
-            }
-
-
-
-
-         
-            
         }
         
     </script>
