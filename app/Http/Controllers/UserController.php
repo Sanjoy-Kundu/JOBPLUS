@@ -67,6 +67,10 @@ class UserController extends Controller
         return view('pages.users.loginPage');
     }
 
+    public function jobpulseLoginAdmin():View{
+        return view('pages.users.loginPage');
+    }
+
     // both login (owner + companies + candidate)
     public function userLogin(Request $request){
         try{

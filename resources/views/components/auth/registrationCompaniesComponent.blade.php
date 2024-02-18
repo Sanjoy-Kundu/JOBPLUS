@@ -21,6 +21,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
+    <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
+    <script src="{{asset('assets/backend')}}/js/config.js"></script>
 
 </head>
 
@@ -42,8 +44,8 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account! as Companies Profile</h1>
                             </div>
-                            <form class="user">
-                                <div class="form-group">
+                            <section class="user" id="company-form-reset">
+                                <div class="form-group d-none">
                                     <input type="text" class="form-control form-control-user readonly" name="role" id="role"value="companies">
                                 </div>
                             
@@ -65,13 +67,13 @@
                                         <input type="password" class="form-control form-control-user"id="cpassword" name="cpassword" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-user btn-block">REGISTRATION</button>
+                                <button class="btn btn-primary btn-user btn-block" onclick="companyRegistration()">REGISTRATION</button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block"><i class="fab fa-google fa-fw"></i> Register with Google </a>
                                 <a href="index.html" class="btn btn-facebook btn-user btn-block"> <i class="fab fa-facebook-f fa-fw"></i> 
                                     Register with Facebook
                                 </a>
-                            </form>
+                            </section>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="{{url('/jobpuls-forget-password')}}" target="_blank">Forgot Password?</a>
@@ -84,8 +86,58 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+
+
+    <script>
+
+       async function companyRegistration(){
+            let role = document.getElementById("role").value; 
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let cpassword = document.getElementById("cpassword").value;
+
+            let postData = {
+                role:role,
+                name:name,
+                email:email,
+                password:password
+            }
+            if(name === ""){
+                errorToast("Name field is required")
+            }else if(email === ""){
+                errorToast("Email field is required")
+            }else if(password === ""){
+                errorToast("password is required")
+            }else if(password.length < 3){
+                errorToast("password length must be 4 charater or more")
+            }else if(password != cpassword){
+                errorToast("password and conirm password does not match")
+            }else{
+
+            let res = await axios.post("/user-registration-employer",postData)
+            console.log(res.data["status"])
+            if(res.data["status"] === "success"){
+                alert(res.data["message"]);
+                //window.loaction.href = "/jobpuls-login"
+                window.location.href="/jobpuls-login"
+            }
+        }
+
+
+
+        }
+    </script>
+
+
+
+
+
+
+
+   
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('assets/backend')}}/vendor/jquery/jquery.min.js"></script>
@@ -96,6 +148,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('assets/backend')}}/js/sb-admin-2.min.js"></script>
+    
 
 </body>
 

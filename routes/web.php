@@ -3,27 +3,22 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::get("/jobpuls-registration", [UserController::class, "jobplusRegistration"]);
+
+
+Route::get("/jobpuls-registration",           [UserController::class, "jobplusRegistration"]);
 Route::get("/jobpuls-registration-companies", [UserController::class, "jobplusRegistrationCompanies"]);
-Route::get("/jobpuls-login", [UserController::class, "jobpulseLogin"]);
-Route::get("/jobpuls-forget-password", [UserController::class, "jobpulsForgetPassword"]);
-Route::get('/jobplus-otp-page', [UserController::class,"otp"]);
-Route::get('/jobpuls-reset-password', [UserController::class, "resetPasswordFrom"]);
+
+Route::get("/jobpuls-login",                  [UserController::class, "jobpulseLogin"]);
+Route::get("/jobpuls-login-admin",            [UserController::class, "jobpulseLoginAdmin"]);
+
+Route::get("/jobpuls-forget-password",        [UserController::class, "jobpulsForgetPassword"]);
+Route::get('/jobplus-otp-page',               [UserController::class,"otp"]);
+Route::get('/jobpuls-reset-password',         [UserController::class, "resetPasswordFrom"]);
 
 
 
-Route::post("/user-login-admin", [UserController::class, "userLogin"]);
-Route::post("/user-login", [UserController::class, "userLogin"]);
+Route::post("/user-login-admin",              [UserController::class, "userLogin"]);
+Route::post("/user-login",                    [UserController::class, "userLogin"]);
 
 
 
