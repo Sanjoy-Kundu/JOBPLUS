@@ -188,7 +188,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-primary" id="UserNamename"></span>
+                                
                                 <img class="img-profile rounded-circle"
                                     src="" alt="not found">
                             </a>
@@ -235,6 +236,7 @@
         try{
             let res = await axios.get("/user-profile",HeaderToken())
             console.log(res.data["data"])
+            document.getElementById("UserNamename").innerText = res.data["data"]["name"]
         }
         catch(e){
             console.log(e)

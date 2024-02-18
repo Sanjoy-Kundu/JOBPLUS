@@ -84,7 +84,7 @@
     <script>
         async function otpSubmit(){
             let otp = document.getElementById("otp").value;
-            let email = document.getElementById("email").value;
+            let email = sessionStorage.getItem("email");
 
             if(otp === ""){
                 errorToast("Opt Field is required");
@@ -96,12 +96,15 @@
                 email:email,
                 otp:otp
             } 
+
+            //console.log(postData)
             showLoader()
              let res = await axios.post("/verify-otp",postData)
             hideLoader()
 
             if(res.data["status"] === "success"){
                 successToast(res.data["message"]);
+                setToken(res.data["token"])
                 window.location.href="/jobpuls-reset-password"
             }
         }

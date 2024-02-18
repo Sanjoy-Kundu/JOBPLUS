@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/jobpuls-registration",           [UserController::class, "jobplusRegistration"]);
 Route::get("/jobpuls-registration-companies", [UserController::class, "jobplusRegistrationCompanies"]);
 
-Route::get("/jobpuls-login",                  [UserController::class, "jobpulseLogin"]);
+Route::get("/jobpuls-login",                  [UserController::class, "jobpulseLogin"])->name("login");
 Route::get("/jobpuls-login-admin",            [UserController::class, "jobpulseLoginAdmin"]);
 
 Route::get("/jobpuls-forget-password",        [UserController::class, "jobpulsForgetPassword"]);
@@ -35,7 +35,7 @@ Route::post("/forget-reset-password-otp",   [UserController::class, "forgetReset
 
 
 //user dashboard 
-Route::get("/dashboard", [UserController::class, "dashboard"])->middleware(["auth:sanctum"]);
+Route::get("/dashboard", [UserController::class, "dashboard"]);
 
 Route::get("/user-profile",         [UserController::class, "userProfile"])->middleware(["auth:sanctum"]);
 Route::post("/user-profile-update", [UserController::class, "userProfileUpdate"])->middleware(["auth:sanctum"]);

@@ -85,7 +85,8 @@
 
            if(res.data["status"] === "success"){
             successToast(res.data["message"]);
-            window.location.href="/"
+            sessionStorage.setItem("email",document.getElementById('email').value ); // session stroage email set
+            window.location.href="/jobplus-otp-page"
            }
         }
     </script>
