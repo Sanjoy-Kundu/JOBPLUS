@@ -21,12 +21,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
+    <script src="{{asset('assets/backend')}}/js/config.js"></script>
+    <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="progress d-none" style="height: 3px;">
+    <div class="progress d-none" id="loader" style="height: 3px;">
         <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
@@ -46,16 +48,14 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Reset Your Password</h1>
                                     </div>
-                                    <form class="user">
+                                    <section class="user" id="reset-password-form">
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Your New Password">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Your New Password">
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">
+                                        <button onclick="resetPassword()" class="btn btn-primary btn-user btn-block">
                                            RESET
                                         </button>
-                                    </form>
+                                    </section>
                                     <hr>
                                 </div>
                             </div>
@@ -66,8 +66,37 @@
             </div>
 
         </div>
-
     </div>
+
+
+
+    <script>
+        async function resetPassword(){
+            try{
+                let password = document.getElementById("password").value;
+
+                    if(password === ""){
+                        errorToast("Password Field is required");
+                    }
+
+                    let postData = {
+                        password:password
+                    }
+
+                    showLoader()
+                    let res = await axios.post("/forget-reset-password-otp",postData,HeaderToken())
+                    hideLoader()
+
+                    if(res.data["status"] === "success"){
+                        successToast(res.data["message"])
+                        window.location.href="/dashboard"
+                    }
+            }catch(e){
+                console.log(e)
+            }
+        
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('assets/backend')}}/vendor/jquery/jquery.min.js"></script>

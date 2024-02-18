@@ -21,13 +21,15 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
+    <script src="{{asset('assets/backend')}}/js/config.js"></script>
+    <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="progress d-none" style="height: 3px;">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress" style="height: 3px;">
+        <div class="progress-bar bg-warning d-none" id="loader" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
     <div class="container">
@@ -48,20 +50,15 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
+                                    <section class="user" id="reset-from-section">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Your Email">
                                         </div>
-                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
-                                        </a>
-                                    </form>
+                                        <button class="btn btn-primary btn-user btn-block" onclick="sendOtp()">
+                                            Next
+                                        </button>
+                                    </section>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="{{url('/jobpuls-registration')}}" target="_blank">Create an Account!</a>
-                                    </div>
                                     <div class="text-center">
                                         <a class="small" target="_blank" href="{{url("/jobpuls-login")}}">Already have an account? Login!</a>
                                     </div>
@@ -72,10 +69,29 @@
                 </div>
 
             </div>
-
         </div>
-
     </div>
+
+    <script>
+        async function  sendOtp() {
+            let email = document.getElementById("email").value 
+            let postBody = {
+                email:email
+            }
+
+           showLoader()
+           let res = await axios.post("/sendOtp",postBody)
+           hideLoader()
+
+           if(res.data["status"] === "success"){
+            successToast(res.data["message"]);
+            window.location.href="/"
+           }
+        }
+    </script>
+
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('assets/backend')}}/vendor/jquery/jquery.min.js"></script>

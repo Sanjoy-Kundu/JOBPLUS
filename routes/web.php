@@ -35,7 +35,7 @@ Route::post("/forget-reset-password-otp",   [UserController::class, "forgetReset
 
 
 //user dashboard 
-Route::get("/dashboard", [UserController::class, "dashboard"]);
+Route::get("/dashboard", [UserController::class, "dashboard"])->middleware(["auth:sanctum"]);
 
 Route::get("/user-profile",         [UserController::class, "userProfile"])->middleware(["auth:sanctum"]);
 Route::post("/user-profile-update", [UserController::class, "userProfileUpdate"])->middleware(["auth:sanctum"]);

@@ -21,12 +21,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('assets/backend')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
+    <script src="{{asset('assets/backend')}}/js/config.js"></script>
+    <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="progress d-none" style="height: 3px;">
+    <div class="progress d-none" id="loader" style="height: 3px;">
         <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
@@ -48,16 +50,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Now Write Your Four digit Otp</h1>
                                     </div>
-                                    <form class="user">
+                                    <section class="user" id="otp-page-reset">
                                         <div class="form-group">
-                                            <input type="number" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Your Otp">
+                                            <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Your Email">
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">
+
+                                        <div class="form-group">
+                                            <input type="number" class="form-control form-control-user" id="otp" name="otp" aria-describedby="emailHelp1" placeholder="Enter Your Otp">
+                                        </div>
+                                        <button class="btn btn-primary btn-user btn-block" onclick="otpSubmit()">
                                            SUBMIT
                                         </button>
-                                    </form>
+                                    </section>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="{{url('/jobpuls-registration')}}" target="_blank">Create an Account!</a>
@@ -70,12 +74,44 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
+
+
+
+
+    <script>
+        async function otpSubmit(){
+            let otp = document.getElementById("otp").value;
+            let email = document.getElementById("email").value;
+
+            if(otp === ""){
+                errorToast("Opt Field is required");
+            }else if(email === ""){
+                errorToast("Email is required");
+            }
+
+            let postData = {
+                email:email,
+                otp:otp
+            } 
+            showLoader()
+             let res = await axios.post("/verify-otp",postData)
+            hideLoader()
+
+            if(res.data["status"] === "success"){
+                successToast(res.data["message"]);
+                window.location.href="/jobpuls-reset-password"
+            }
+        }
+    </script>
+
+
+
+
+
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('assets/backend')}}/vendor/jquery/jquery.min.js"></script>

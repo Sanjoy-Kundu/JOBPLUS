@@ -97,6 +97,7 @@ class UserController extends Controller
     public function jobpulsForgetPassword():View{
         return view('pages.users.forgetPasswordPage');
     }
+    
     public function sendOtpForForgetPassword(Request $request){
         try{
         // $request->validate([
