@@ -32,49 +32,45 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
          
+            <li class="nav-item" id="companyRole">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>companies</span></a>
+            </li>
+
+            <li class="nav-item" id="vendorJob">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Jobs</span></a>
+            </li>
+
+            <li class="nav-item d-none" id="candidateProfile">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Profiles</span></a>
+            </li>
+
+            <li class="nav-item" id="employeeRole">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Employee</span></a>
+            </li>
+
+            <li class="nav-item" id="blogRole">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Blogs</span></a>
+            </li>
+
+
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item" id="companyPageRole">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -90,28 +86,23 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            <li class="nav-item d-none" id="roleProfile">
+                <a class="nav-link" href="{{url("/dashboard-profile")}}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Jobs</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Employee</span></a>
+                    <span>Profiles</span></a>
             </li>
 
-            <li class="nav-item">
+            
+            <li class="nav-item" id="rolePlugin">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Plugin</span></a>
             </li>
+           
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-cog"></i>
+            <li class="nav-item" id="">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-chart-area"></i>
                     <span>Account Settings</span></a>
             </li>
 
@@ -196,7 +187,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{url('/dashboard-profile')}}" target="_blank">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -219,7 +210,7 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+                <!-- End of Topbar  d-none -->
 <script>
     
     getProfile()
@@ -228,6 +219,24 @@
             let res = await axios.get("/user-profile",HeaderToken())
             console.log(res.data["data"])
             document.getElementById("UserNamename").innerText = res.data["data"]["name"]
+
+
+
+                if(res.data["data"]["role"] === "companies"){
+                    document.getElementById("companyRole").classList.add("d-none")
+                    document.getElementById("companyPageRole").classList.add("d-none")
+                }
+                
+                if(res.data["data"]["role"] === "candidate"){
+                    console.log("im candidate")
+                    document.getElementById("companyRole").classList.add("d-none")
+                    document.getElementById("employeeRole").classList.add("d-none")
+                    document.getElementById("blogRole").classList.add("d-none")
+                    document.getElementById("companyPageRole").classList.add("d-none")
+                    document.getElementById("rolePlugin").classList.add("d-none")
+                    document.getElementById("roleProfile").classList.remove("d-none")
+                }
+
         }
         catch(e){
             console.log(e)
