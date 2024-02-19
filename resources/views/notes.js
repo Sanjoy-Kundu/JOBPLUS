@@ -20,5 +20,10 @@
 * Login connect with Backend by forntned
 *Introduce:
     1. axios install and setup
+    2.login registrationa and dshboad setup completed 
+    3. dashboard contcat page completed done 
+
+
+* Frontend show koranor jonno frontendController Baniyeci
     
 */
