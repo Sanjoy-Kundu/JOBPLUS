@@ -121,6 +121,10 @@
                     successToast(res.data["message"])
                     window.location.href="/dashboard"
                 }
+                
+                if(res.data["status"] === "fail"){
+                    errorToast(res.data["message"]);
+                }
                 //console.log(res.data);
             }
         }

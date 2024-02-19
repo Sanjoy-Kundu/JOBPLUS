@@ -183,65 +183,70 @@ class UserController extends Controller
   }
 
 
+  public function dashboardProfile():View{
+    return view("pages.dashboard.profilePage");
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function userProfile(){
-        try{
-            $userId = Auth::id();
-            $user = User::where("id",$userId)->first();
-            return response()->json(["status" => "success", "data" => $user]);
-        }catch(Exception $ex){
-            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
-        }
-    }
-
-
-    public function userProfileUpdate(Request $request){
-        try{
-            $email = $request->input("email");
-            $userId = Auth::id();
-            User::where("id",$userId)->where("email",$email)->update([
-             "name" => Str::upper($request->input("name")),
-            ]);
-            return response()->json(["status" => "success", "message" => "User Profile Updated Successfully"]);
-        }catch(Exception $ex){
-            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
-        }
-    
-    }
-
-
-
-    public function userPasswordReset(Request $request){
-      try{
+  public function userProfile(){
+    try{
         $userId = Auth::id();
-        $newPassword = $request->input("password");
-        User::where("id",$userId)->update([
-            "password" => Hash::make($newPassword)
-        ]);
-        return response()->json(["status" => "success", "message" => "User Password Updated Successfully"]);
-      }catch(Exception $ex){
+        $user = User::where("id",$userId)->first();
+        return response()->json(["status" => "success", "data" => $user]);
+    }catch(Exception $ex){
         return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
-      }
     }
+}
+
+
+public function userProfileUpdate(Request $request){
+    try{
+        $email = $request->input("email");
+        $userId = Auth::id();
+        User::where("id",$userId)->where("email",$email)->update([
+         "name" => Str::upper($request->input("name")),
+        ]);
+        return response()->json(["status" => "success", "message" => "User Profile Updated Successfully"]);
+    }catch(Exception $ex){
+        return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+    }
+
+}
+
+
+
+public function userPasswordReset(Request $request){
+  try{
+    $userId = Auth::id();
+    $newPassword = $request->input("password");
+    User::where("id",$userId)->update([
+        "password" => Hash::make($newPassword)
+    ]);
+    return response()->json(["status" => "success", "message" => "User Password Updated Successfully"]);
+  }catch(Exception $ex){
+    return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     

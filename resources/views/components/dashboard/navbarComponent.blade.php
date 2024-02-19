@@ -220,15 +220,6 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-
-                {{-- <script>
-                    getProfile()
-                    async function getProfile(){
-                        let res = await axios.get("/user-profile",HeaderToken())
-                        console.log(res)
-                    }
-                </script> --}}
 <script>
     
     getProfile()
@@ -240,7 +231,6 @@
         }
         catch(e){
             console.log(e)
-        }
-       
+        }  
     }
 </script>
