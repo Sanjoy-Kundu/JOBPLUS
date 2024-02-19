@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,9 @@ Route::get("/user-profile",         [UserController::class, "userProfile"])->mid
 Route::post("/user-profile-update", [UserController::class, "userProfileUpdate"])->middleware(["auth:sanctum"]);
 Route::post("/user-password-reset", [UserController::class, "userPasswordReset"])->middleware(["auth:sanctum"]);
 
-
+// admin dashboard contact 
+Route::get("/dashboard-contact",    [ContactController::class,"dashboardContact"]);
+Route::get("/web-contact-get", [ContactController::class, "contactGetList"])->middleware(["auth:sanctum"]);
+Route::post("/web-contact", [ContactController::class, "webContact"])->middleware(["auth:sanctum"]);
+Route::post("/web-contact-update", [ContactController::class, "webContactupdate"])->middleware(["auth:sanctum"]);
 

@@ -81,7 +81,7 @@
                         <a class="collapse-item" href="#">Home</a>
                         <a class="collapse-item" href="#">About</a>
                         <a class="collapse-item" href="#">Jobs</a>
-                        <a class="collapse-item" href="#">Contact</a>
+                        <a class="collapse-item" href="{{url('/dashboard-contact')}}">Contact</a>
                     </div>
                 </div>
             </li>
