@@ -6,10 +6,8 @@
 
         <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
             <div class="content">
-            <h2>The vision of the company is to try bringing Internet technology in the mainstream business and economic life of the society</h2>
-            <p>
-                Our web-site aims to explore maximum benefits of the Internet. We believe our service will help the job seekers manage their career more efficiently. This site will also help employers solve many of the problems associated with traditional recruiting methods and allow them to save time and money.Our web-site aims to explore maximum benefits of the Internet. We believe our service will help the job seekers manage their career more efficiently. This site will also help employers solve many of the problems associated with traditional recruiting methods and allow them to save time and money.Our web-site aims to explore maximum benefits of the Internet. We believe our service will help the job seekers manage their career more efficiently. This site will also help employers solve many of the problems associated with traditional recruiting methods and allow them to save time and money.
-            </p>
+            <h2><span id="about_title"></span></h2>
+            <p><span  id="about_description"></span></p>
             </div>
         </div>
 
@@ -20,3 +18,13 @@
         </div>
     </div>
     </section>
+
+
+    <script>
+            frontendAboutInfo()
+    async function frontendAboutInfo(){
+      let res = await axios.get("/frontend-about-details");
+      document.getElementById("about_title").innerText = res.data["data"]["about_title"];
+      document.getElementById("about_description").innerText = res.data["data"]["about_description"];
+    }
+    </script>

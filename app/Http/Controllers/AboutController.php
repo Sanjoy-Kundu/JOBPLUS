@@ -66,4 +66,28 @@ class AboutController extends Controller
             return response()->json(["status" => "fail", "message"=> $ex->getMessage()]);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function frontendAboutDetails(){
+        try{
+            $data = About::where("id","=",1)->first();
+            return response()->json(["status" => "success", "data" => $data]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+    }
 }

@@ -13,7 +13,7 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#services">JOBS</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Contact</a></li>
-          <li><a class="nav-link scrollto" href="#contact">login</a></li>
+          <li><a class="nav-link scrollto" href="{{url("/jobpuls-login")}}" target="_blank">login</a></li>
   
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

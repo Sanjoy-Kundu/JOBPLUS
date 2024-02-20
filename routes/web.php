@@ -48,6 +48,7 @@ Route::post("/web-contact-update", [ContactController::class, "webContactupdate"
 
 //admin dashboard about 
 Route::get("/dashboard-about", [AboutController::class, "dashboardAbout"]);
+Route::get("/frontend-about-details",  [AboutController::class, "frontendAboutDetails"]);
 Route::get("/dashboard-about-details", [AboutController::class, "webDashboardAboutDetails"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-about-insert", [AboutController::class, "webDashboardAbout"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-about-update", [AboutController::class, "dashboardAboutUpdate"])->middleware(["auth:sanctum"]);
