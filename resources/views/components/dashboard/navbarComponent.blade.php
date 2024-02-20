@@ -79,7 +79,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">Home</a>
-                        <a class="collapse-item" href="#">About</a>
+                        <a class="collapse-item" href="{{url('/dashboard-about')}}">About</a>
                         <a class="collapse-item" href="#">Jobs</a>
                         <a class="collapse-item" href="{{url('/dashboard-contact')}}">Contact</a>
                     </div>

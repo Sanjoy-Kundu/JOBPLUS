@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\UserController;
@@ -45,7 +46,15 @@ Route::post("/web-contact", [ContactController::class, "webContact"])->middlewar
 Route::post("/web-contact-update", [ContactController::class, "webContactupdate"])->middleware(["auth:sanctum"]);
 
 
+//admin dashboard about 
+Route::get("/dashboard-about", [AboutController::class, "dashboardAbout"]);
+Route::get("/dashboard-about-details", [AboutController::class, "webDashboardAboutDetails"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-about-insert", [AboutController::class, "webDashboardAbout"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-about-update", [AboutController::class, "dashboardAboutUpdate"])->middleware(["auth:sanctum"]);
 
+
+
+//Frontend 
 Route::get("/",        [FrontendController::class, "index"]);
 Route::get('/about',   [FrontendController::class,"about"]);
 
