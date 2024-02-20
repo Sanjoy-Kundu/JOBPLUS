@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,9 @@ Route::get("/dashboard-about-details", [AboutController::class, "webDashboardAbo
 Route::post("/dashboard-about-insert", [AboutController::class, "webDashboardAbout"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-about-update", [AboutController::class, "dashboardAboutUpdate"])->middleware(["auth:sanctum"]);
 
+
+// admin company jobsection 
+Route::get("/dashboard-job", [JobController::class, "dashboardJobForm"]);
 
 
 //Frontend 

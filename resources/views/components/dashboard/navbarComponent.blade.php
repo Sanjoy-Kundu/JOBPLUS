@@ -44,7 +44,7 @@
             </li>
 
             <li class="nav-item" id="vendorJob">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{url("/dashboard-job")}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Jobs</span></a>
             </li>
@@ -80,7 +80,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">Home</a>
                         <a class="collapse-item" href="{{url('/dashboard-about')}}">About</a>
-                        <a class="collapse-item" href="#">Jobs</a>
+                        <a class="collapse-item" href="{{url('/dashboard-job')}}" target="_blank">Jobs</a>
                         <a class="collapse-item" href="{{url('/dashboard-contact')}}">Contact</a>
                     </div>
                 </div>
