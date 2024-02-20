@@ -57,6 +57,7 @@ Route::post("/dashboard-about-update", [AboutController::class, "dashboardAboutU
 
 // admin company jobsection 
 Route::get("/dashboard-job", [JobController::class, "dashboardJobForm"]);
+Route::post("/dashboard-job-insert", [JobController::class, "dashboardJob"])->middleware(["auth:sanctum"]);
 
 
 //Frontend 

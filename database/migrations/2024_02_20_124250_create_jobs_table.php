@@ -13,7 +13,20 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->string("adminAccess");
+            $table->string("companyName");
+            $table->string("jobTitle");
+            $table->string("minumumSalary");
+            $table->string("jobLocation");
+            $table->string("jobExperience");
+            $table->string("jobAdditionalRequirement");
+            $table->date("jobPublishDate");
+            $table->string("jobSkill");
+            $table->string("jobCompnayOtherBenifits");
+            $table->string("jobEmployeeStatus");
+            $table->timestamp("created_at")->useCurrent();
+            $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
         });
     }
 

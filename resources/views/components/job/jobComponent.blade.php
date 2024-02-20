@@ -17,11 +17,11 @@
                     <h2 class="text-center">Upload Your Job</h2>
                 </div>
                 <div class="card-body">
-                    <section id="job-from">
+                    <form id="reset-form" onsubmit="event.preventDefault();">
                         <div class="row mb-3">
                           <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter Your Company Name">
+                            <input type="text" class="form-control"  id="companyName" name="companyName" placeholder="Enter Your Company Name">
                           </div>
                         </div>
                         
@@ -90,8 +90,8 @@
                             <input type="text" class="form-control" id="jobEmployeeStatus" name="jobEmployeeStatus" placeholder="Enter Your Employment Status">
                           </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">POST JOB</button>
-                      </section>
+                        <button class="btn btn-primary" onclick="postJob()">POST JOB</button>
+                      </form>
                 </div>
             </div>
         </div>
@@ -101,8 +101,23 @@
 
 
 <script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 jobComponent()
 async function jobComponent(){
+  
     try{
         let res = await axios.get("/user-profile",HeaderToken())
             if(res.data["data"]["role"] === "candidate"){
@@ -119,4 +134,73 @@ async function jobComponent(){
         console.log(e)
     } 
 }
+
+
+
+
+
+
+async function postJob(){
+
+
+  let companyName              = document.getElementById("companyName").value;
+  let jobTitle                 = document.getElementById("jobTitle").value;
+  let minumumSalary            = document.getElementById("minumumSalary").value;
+  let jobLocation              = document.getElementById("jobLocation").value;
+  let jobExperience            = document.getElementById("jobExperience").value;
+  let jobAdditionalRequirement = document.getElementById("jobAdditionalRequirement").value;
+  let jobPublishDate           = document.getElementById("jobPublishDate").value;
+  let jobSkill                 = document.getElementById("jobSkill").value;
+  let jobCompnayOtherBenifits  = document.getElementById("jobCompnayOtherBenifits").value;
+  let jobEmployeeStatus        = document.getElementById("jobEmployeeStatus").value;
+
+
+
+
+      if(companyName === ""){
+        errorToast("Name field is required");
+      }else if(jobTitle === ""){
+        errorToast("Title field is required");
+      }else if(minumumSalary === ""){
+        errorToast("Salary field is required");
+      }else if(jobLocation === ""){
+        errorToast("Location field is required");
+      }else if(jobExperience === ""){
+        errorToast("Job Experience field is required");
+      }else if(jobAdditionalRequirement === ""){
+        errorToast("Additional Requirement field is required");
+      }else if(jobPublishDate === ""){
+        errorToast("Please select date");
+      }else if(jobEmployeeStatus === ""){
+        errorToast("Employee field is required");
+      }
+
+
+
+      let postData = {
+        companyName:companyName,
+        jobTitle:jobTitle,
+        minumumSalary:minumumSalary,
+        jobLocation:jobLocation,
+        jobExperience:jobExperience,
+        jobAdditionalRequirement:jobAdditionalRequirement,
+        jobPublishDate:jobPublishDate,
+        jobSkill:jobSkill,
+        jobCompnayOtherBenifits:jobCompnayOtherBenifits,
+        jobEmployeeStatus:jobEmployeeStatus
+      }
+      console.log(postData)
+
+      showLoader()
+      let res = await axios.post("/dashboard-job-insert",postData,HeaderToken());
+      document.getElementById("reset-form").reset();
+      hideLoader()
+      if(res.data["status"] === "success"){
+      
+        successToast(res.data["message"]);
+      }
+    
+
+}
+
 </script> 
