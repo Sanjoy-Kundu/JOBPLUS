@@ -22,4 +22,15 @@ class FrontendController extends Controller
         return view("pages.frontend.aboutPage");
         
     }
+
+
+    public function viewJob():View{
+        return view("pages.frontend.viewJob");
+    }
+    
+
+    public function jobPage():View{
+        return view("pages.frontend.jobPage");
+    }
+
 }

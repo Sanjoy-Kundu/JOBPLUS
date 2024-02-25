@@ -48,7 +48,7 @@ Route::post("/web-contact-update", [ContactController::class, "webContactupdate"
 
 
 //admin dashboard about 
-Route::get("/dashboard-about", [AboutController::class, "dashboardAbout"]);
+Route::get("/dashboard-about",         [AboutController::class, "dashboardAbout"]);
 Route::get("/frontend-about-details",  [AboutController::class, "frontendAboutDetails"]);
 Route::get("/dashboard-about-details", [AboutController::class, "webDashboardAboutDetails"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-about-insert", [AboutController::class, "webDashboardAbout"])->middleware(["auth:sanctum"]);
@@ -63,4 +63,6 @@ Route::post("/dashboard-job-insert", [JobController::class, "dashboardJob"])->mi
 //Frontend 
 Route::get("/",        [FrontendController::class, "index"]);
 Route::get('/about',   [FrontendController::class,"about"]);
+Route::get("/jobs", [FrontendController::class, "jobPage"]);
+Route::get("/view-job", [FrontendController::class, "viewJob"]);
 
