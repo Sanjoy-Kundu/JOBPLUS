@@ -79,7 +79,8 @@
 
         $(".viewBtn").on("click", function(){
           let viewId = $(this).data("id");
-          alert(viewId);
+         $("#view-modal").modal("show");
+         $("#viewId").val(viewId);
         })
 
         $(".editBtn").on("click", function(){
