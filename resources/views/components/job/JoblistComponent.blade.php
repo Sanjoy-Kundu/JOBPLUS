@@ -60,15 +60,33 @@
                               </td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" class="btn btn-danger"  data-id="${item['id']}">DELETE</button>
-                                    <button type="button" class="btn btn-warning" data-id="${item['id']}">VIEW</button>
-                                    <button type="button" class="btn btn-success" data-id="${item['id']}">EDIT</button>
+                                    <button type="button" class="btn btn-danger deleteBtn"  data-id="${item['id']}">DELETE</button>
+                                    <button type="button" class="btn btn-warning viewBtn" data-id="${item['id']}">VIEW</button>
+                                    <button type="button" class="btn btn-success editBtn" data-id="${item['id']}">EDIT</button>
                                 </div>
                             </td>
                         </tr>
           `
           tableList.append(row)
         });
+
+        $(".deleteBtn").on("click",function(){
+          let deleteId = $(this).data("id");
+          $("#delete-modal").modal("show");
+          $("#deleteID").val(deleteId);
+          //alert(deleteId);
+        })
+
+        $(".viewBtn").on("click", function(){
+          let viewId = $(this).data("id");
+          alert(viewId);
+        })
+
+        $(".editBtn").on("click", function(){
+          let editId = $(this).data("id");
+          alert(editId);
+        })
+
 
 
         new DataTable('#tableData',{

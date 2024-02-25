@@ -61,4 +61,17 @@ class JobController extends Controller
         }
     }
 
+
+
+    public function dashboardJobDelete(Request $request){
+        try{
+            $user_id=Auth::id();
+          
+            Job::where('id','=',$request->input('id'))->where('user_id','=',$user_id)->delete();
+            return response()->json(['status' => 'success', 'message' => "Delete Successful"]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+    }
+
 }
