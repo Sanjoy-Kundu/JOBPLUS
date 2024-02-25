@@ -14,6 +14,7 @@
 10. (User login) (companies login) (candidate login ) forget password and reset password added completed forntend
 
 
+// backend e job post list show korabo as candidates (admin)
 
 
 
@@ -25,5 +26,6 @@
 
 
 * Frontend show koranor jonno frontendController Baniyeci
-    
+    1. Frontend e  job show completed 
+
 */

@@ -15,7 +15,6 @@ class JobController extends Controller
     }   
 
 
-
     public function dashboardJob(Request $request){
         try{
             $userId = Auth::id();
@@ -34,6 +33,28 @@ class JobController extends Controller
             ]);
 
             return response()->json(["status" => "success", "message" => "Job Inserted Successfully"]);
+
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+    }
+
+
+
+    public function dashboardJoblistPage():View{
+        return view("pages.dashboard.joblistPage");
+    }   
+
+
+
+
+    public function dashboardJobList(Request $request){
+        //return "This is dahboard list";
+        
+        try{
+            $user_id = Auth::id();
+            $joblist = Job::where("user_id","=",$user_id)->get();
+            return response()->json(["status" => "success", "joblists"=>$joblist]);
 
         }catch(Exception $ex){
             return response()->json(["status" => "fail", "message" => $ex->getMessage()]);

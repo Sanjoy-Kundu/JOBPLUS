@@ -3,9 +3,9 @@
     <!-- Page Heading -->
     <div class="">
         <h1 class="h4 mb-0 text-gray-800 text-center">JOB PAGE</h1>
-        <button class="btn btn-primary"><a href="#" style="text-decoration: none; color:white">YOUR JOB LISTS</a></button>
+        <button class="btn btn-primary"><a href="{{url('/dashboard-job-lists-page')}}" style="text-decoration: none; color:white">YOUR JOB LISTS</a></button>
         <button class="btn btn-success" id="cadidateHide"><a href="#" style="text-decoration: none; color:white">CANDIDATE APPLYING LISTS</a></button>
-        <button class="btn btn-warning" id="onlyAdmin"><a href="#" style="text-decoration: none; color:white">ALL JOB LISTS</a></button>
+        <button class="btn btn-warning" id="onlyAdmin"><a href="" style="text-decoration: none; color:white">ALL JOB LISTS</a></button>
     </div>
 
     <!-- Content Row -->
@@ -101,19 +101,6 @@
 
 
 <script>
-
-    
-
-
-
-
-
-
-
-
-
-
-
 
 jobComponent()
 async function jobComponent(){
