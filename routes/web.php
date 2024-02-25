@@ -57,6 +57,7 @@ Route::post("/dashboard-about-update", [AboutController::class, "dashboardAboutU
 
 // admin company jobsection 
 Route::get("/dashboard-job", [JobController::class, "dashboardJobForm"]);
+Route::get("/dashboard-job-page", [JobController::class, "dashboardJobPageForm"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-job-insert", [JobController::class, "dashboardJob"])->middleware(["auth:sanctum"]);
 
 
@@ -65,4 +66,9 @@ Route::get("/",        [FrontendController::class, "index"]);
 Route::get('/about',   [FrontendController::class,"about"]);
 Route::get("/jobs", [FrontendController::class, "jobPage"]);
 Route::get("/view-job", [FrontendController::class, "viewJob"]);
+Route::get('/contact',   [FrontendController::class,"contactUs"]);
 
+
+
+//Frontend job show api call 
+Route::get("/alljobs", [FrontendController::class, "allJobShow"]);

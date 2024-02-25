@@ -48,6 +48,11 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Jobs</span></a>
             </li>
+            <li class="nav-item" id="vendorJob">
+                <a class="nav-link" href="{{url("/dashboard-job-page")}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Job(Page)</span></a>
+            </li>
 
             <li class="nav-item d-none" id="candidateProfile">
                 <a class="nav-link" href="#">

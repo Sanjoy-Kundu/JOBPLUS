@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Job;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class FrontendController extends Controller
@@ -33,4 +35,20 @@ class FrontendController extends Controller
         return view("pages.frontend.jobPage");
     }
 
+
+    public function contactUs():View{
+        return view("pages.frontend.contactPage");
+    }
+
+
+    public function allJobShow(){ 
+        try{
+            $sixjobs = Job::all()->where("adminAccess","=","0")->take(6);
+            $alljobs = Job::all()->where("adminAccess","=","0");
+            return response()->json(["status" => "success", "sixjobs" =>$sixjobs, "allJobs" =>$alljobs]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+        
+    }
 }

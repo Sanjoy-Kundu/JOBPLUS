@@ -25,6 +25,7 @@
   <link href="{{asset('assets/frontend')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="{{asset('assets/frontend')}}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <script src="{{asset('assets/frontend')}}/assets/js/jquery.min.js"></script>
   <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
   <script src="{{asset('assets/backend')}}/js/config.js"></script>
 
