@@ -18,21 +18,22 @@
         let allJobs = await axios.get("/alljobs");
         let joblists = allJobs.data["sixjobs"];
         let jobCard = $('#jobCard');
-        joblists.forEach((index,item) => {
-            console.log(index);
-            console.log(item);
+        joblists.forEach((item,index) => {
+            // console.log(item)
+            // console.log(item["jobEmployeeStatus"])
+            // console.log(item["minumumSalary"])
             let job = ` 
              <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h6>Dynamics 365 Business Central Developer</h6>
-                        <p>EchoLogyx Ltd.</p>
+                        <h6>${item["jobTitle"]}</h6>
+                        <p>${item["companyName"]}</p>
                         <div>
-                            <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location</span></p>
-                            <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i> job</p>
-                            <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> date</p>
+                            <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location: ${item["jobLocation"]}</span></p>
+                            <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i>${item["jobEmployeeStatus"]}</p>
+                            <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> ${item["jobPublishDate"]}</p>
                         </div>
-                        <p>Description: <br> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, dolor.</span></p>
+                        <p>Salary: ${item["minumumSalary"]}</span></p>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-item:center; padding:10px 10px">
                         <button style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;">Apply</button>
@@ -51,21 +52,21 @@
         let allJobs = await axios.get("/alljobs");
         let joblists = allJobs.data["allJobs"];
         let jobCard = $('#jobCard');
-        joblists.forEach((index,item) => {
+        joblists.forEach((item,index) => {
             console.log(index);
             console.log(item);
             let job = ` 
-             <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h6>Dynamics 365 Business Central Developer</h6>
-                        <p>EchoLogyx Ltd.</p>
+                        <h6>${item["jobTitle"]}</h6>
+                        <p>${item["companyName"]}</p>
                         <div>
-                            <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location</span></p>
-                            <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i> job</p>
-                            <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> date</p>
+                            <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location: ${item["jobLocation"]}</span></p>
+                            <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i>${item["jobEmployeeStatus"]}</p>
+                            <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> ${item["jobPublishDate"]}</p>
                         </div>
-                        <p>Description: <br> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, dolor.</span></p>
+                        <p>Salary: ${item["minumumSalary"]}</span></p>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-item:center; padding:10px 10px">
                         <button style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;">Apply</button>
