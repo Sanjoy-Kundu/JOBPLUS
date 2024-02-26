@@ -85,4 +85,40 @@ class JobController extends Controller
         }
     }
 
+
+
+    public function dashboardJobUpdate(Request $request){
+        try{
+        $id = $request->input("id");
+        $user_id = Auth::id();
+        $companyName = $request->input("companyName");
+        $jobTitle = $request->input("jobTitle");
+        $minumumSalary = $request->input("minumumSalary");
+        $jobLocation = $request->input("jobLocation");
+        $jobExperience = $request->input("jobExperience");
+        $jobAdditionalRequirement = $request->input("jobAdditionalRequirement");
+        $jobPublishDate = $request->input("jobPublishDate");
+        $jobSkill = $request->input("jobSkill");
+        $jobCompnayOtherBenifits = $request->input("jobCompnayOtherBenifits");
+        $jobEmployeeStatus = $request->input("jobEmployeeStatus");
+
+        Job::where("id","=",$id)->where("user_id","=",$user_id)->update([
+            "companyName" => $companyName,
+            "jobTitle" => $jobTitle,
+            "minumumSalary" => $minumumSalary,
+            "jobLocation" => $jobLocation,
+            "jobExperience" => $jobExperience,
+            "jobAdditionalRequirement" => $jobAdditionalRequirement,
+            "jobPublishDate" => $jobPublishDate,
+            "jobSkill" => $jobSkill,
+            "jobCompnayOtherBenifits" => $jobCompnayOtherBenifits,
+            "jobEmployeeStatus" => $jobEmployeeStatus,
+        ]);
+        return response()->json(["status" => "success", "message" => "Job Update Successfully"]);
+        }
+        catch(Exception $ex){
+            return response()->json(["status" => "fail", "message"=>$ex->getMessage()]);
+        }
+    }
+
 }

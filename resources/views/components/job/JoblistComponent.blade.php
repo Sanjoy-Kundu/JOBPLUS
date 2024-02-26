@@ -83,9 +83,12 @@
          await viewData(viewId);
         })
 
-        $(".editBtn").on("click", function(){
+        $(".editBtn").on("click",async function(){
           let editId = $(this).data("id");
-          alert(editId);
+          $("#updateId").val(editId);
+          $("#update-modal").modal("show");
+          await getData(editId)
+         // alert(editId);
         })
 
 
