@@ -10,6 +10,7 @@ use Illuminate\View\View;
 
 class JobController extends Controller
 {
+
     public function dashboardJobForm():View{
         return view("pages.dashboard.jobPage");
     }   
@@ -40,10 +41,21 @@ class JobController extends Controller
     }
 
 
+//only admin can see this 
+    public function dashboardAllJobLists(Request $request):View{
+        return view('pages.dashboard.allJobslistPage');
+    }
+//only admin can see this 
+
+
 
     public function dashboardJoblistPage():View{
         return view("pages.dashboard.joblistPage");
     }   
+
+
+
+
 
 
 
@@ -53,13 +65,18 @@ class JobController extends Controller
         
         try{
             $user_id = Auth::id();
+            $allJobLists = Job::all();
             $joblist = Job::where("user_id","=",$user_id)->get();
-            return response()->json(["status" => "success", "joblists"=>$joblist]);
+            return response()->json(["status" => "success", "joblists"=>$joblist, "allJobs" => $allJobLists]);
 
         }catch(Exception $ex){
             return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
         }
     }
+
+
+
+
 
 
 

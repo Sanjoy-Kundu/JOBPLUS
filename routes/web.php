@@ -60,11 +60,14 @@ Route::get("/dashboard-job", [JobController::class, "dashboardJobForm"]);
 Route::get("/dashboard-job-lists-page", [JobController::class, "dashboardJoblistPage"]);
 
 //Route::get("/dashboard-job-page", [JobController::class, "dashboardJobPageForm"])->middleware(["auth:sanctum"]);
-Route::get("/dashboard-job-lists",   [JobController::class, "dashboardJobList"])->middleware(["auth:sanctum"]);
-Route::post("/dashboard-job-insert", [JobController::class, "dashboardJob"])->middleware(["auth:sanctum"]);
-Route::post("/dashboard-delete-job", [JobController::class, "dashboardJobDelete"])->middleware(["auth:sanctum"]);
-Route::post("/dashboard-view-job",    [JobController::class, "dashboardViewJob"])->middleware(["auth:sanctum"]);
-Route::post("/dashboard-job-update",  [JobController::class, "dashboardJobUpdate"])->middleware(["auth:sanctum"]);
+Route::get("/dashboard-job-lists",       [JobController::class, "dashboardJobList"])->middleware(["auth:sanctum"]);
+Route::get("/dashboard-all-job-lists",   [JobController::class, "dashboardAllJobLists"]);
+// Route::post("/dashboard-admin-permisson", [JobController::class, "adminPermission"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-job-insert",     [JobController::class, "dashboardJob"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-delete-job",     [JobController::class, "dashboardJobDelete"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-view-job",       [JobController::class, "dashboardViewJob"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-job-update",     [JobController::class, "dashboardJobUpdate"])->middleware(["auth:sanctum"]);
+
 
 //Frontend 
 Route::get("/",        [FrontendController::class, "index"]);
