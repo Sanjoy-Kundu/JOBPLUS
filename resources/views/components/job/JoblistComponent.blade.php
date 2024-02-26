@@ -77,10 +77,10 @@
           //alert(deleteId);
         })
 
-        $(".viewBtn").on("click", function(){
+        $(".viewBtn").on("click", async function(){
           let viewId = $(this).data("id");
          $("#view-modal").modal("show");
-         $("#viewId").val(viewId);
+         await viewData(viewId);
         })
 
         $(".editBtn").on("click", function(){

@@ -73,4 +73,16 @@ class JobController extends Controller
         }
     }
 
+
+    public function dashboardViewJob(Request $request){
+        try{
+            $jobId = $request->input("id");
+            $user_id = Auth::id();
+            $result = Job::where("user_id","=",$user_id)->where("id","=",$jobId)->first();
+            return response()->json(["status" => "success", "data" => $result]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
+        }
+    }
+
 }

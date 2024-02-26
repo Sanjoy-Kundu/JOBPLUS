@@ -63,7 +63,7 @@ Route::get("/dashboard-job-lists-page", [JobController::class, "dashboardJoblist
 Route::get("/dashboard-job-lists",   [JobController::class, "dashboardJobList"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-job-insert", [JobController::class, "dashboardJob"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-delete-job", [JobController::class, "dashboardJobDelete"])->middleware(["auth:sanctum"]);
-
+Route::post("/dashboard-view-job",    [JobController::class, "dashboardViewJob"])->middleware(["auth:sanctum"]);
 
 
 //Frontend 
