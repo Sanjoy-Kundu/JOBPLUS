@@ -11,15 +11,20 @@
             <h3 class=" mt-3 text-warning">Access Your Job</h3>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">ID</label>
-                <input type="text" class="form-control d-none" id="accessId" name="id">
+                <input type="text" class="form-control" id="accessId" name="id">
               </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="exampleFormControlInput2" class="form-label">Access</label>
                 <select name="" id="" class="form-control">
                     <option value="0">Pending</option>
                     <option value="1">Success</option>
                 </select>
+              </div> --}}
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label ms-4">Access</label>
+                  <input type="radio" class="ms-3" id="pending"  name="adminAccess" value="0">Pending
+                  <input type="radio" class="ms-3" id="success" checked name="adminAccess" value="1">Success
               </div>
           </div>
         <div class="modal-footer">
@@ -31,5 +36,20 @@
   </div>
 
   <script>
+    async function fillFormAccess(id){
+      document.getElementById("accessId").value = id;
+      let data = {id:id}
+        console.log(data);
+        let res = await axios.post("/dashboard-view-job",data,HeaderToken())
+        // console.log(res.data["data"]["adminAccess"]);
+        // console.log(res.data["adminAccess"]);
+        // if(res.data["data"]["adminAccess"] === "0"){
+        //   document.getElementById("pending").checked = true;
+        // }
 
+        // if(res.data["data"]["adminAccess"] === "1"){
+        //   document.getElementById("success").checked = true;
+        // }
+        
+    }
   </script>

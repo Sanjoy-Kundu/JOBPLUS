@@ -70,11 +70,10 @@
 
         $(".successBtn").on("click",async function(){
           let id = $(this).data("id");
-          console.log(id);
+          //console.log(id);
+          //$("#accessId").val(id);
           $("#access-modal").modal("show");
-          $("#accessId").val(id);
-            //await accessData(id);
-          //alert(deleteId);
+          await fillFormAccess(id)
         })
 
         // $(".viewBtn").on("click", async function(){
