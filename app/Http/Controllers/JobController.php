@@ -138,4 +138,18 @@ class JobController extends Controller
         }
     }
 
+
+
+
+    public function adminAccess(Request $request){
+        try{
+            $id = $request->input("id");
+             $result = Job::where("id","=",$id)->first();
+             return response()->json(["status" => "success", "message" => $result]);
+        }catch(Exception $ex){
+            return response()->json(["status" => "fail", "message" =>$ex->getMessage()]);
+        }
+        
+    }
+
 }

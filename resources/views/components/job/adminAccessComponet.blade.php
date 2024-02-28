@@ -13,23 +13,15 @@
                 <label for="exampleFormControlInput1" class="form-label">ID</label>
                 <input type="text" class="form-control" id="accessId" name="id">
               </div>
-
-            {{-- <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label">Access</label>
-                <select name="" id="" class="form-control">
-                    <option value="0">Pending</option>
-                    <option value="1">Success</option>
-                </select>
-              </div> --}}
             <div class="mb-3">
-                <label for="exampleFormControlInput3" class="form-label ms-4">Access</label>
+                <label for="exampleFormControlInput3" class="form-label ms-4" id="">Access</label>
                   <input type="radio" class="ms-3" id="pending"  name="adminAccess" value="0">Pending
-                  <input type="radio" class="ms-3" id="success" checked name="adminAccess" value="1">Success
+                  <input type="radio" class="ms-3" id="success"  name="adminAccess" value="1">Success
               </div>
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="delete-modal-close" data-dismiss="modal">Close</button>
-          <button type="button" onclick="" class="btn btn-danger">Access</button>
+          <button type="button" onclick="accessPoint()" class="btn btn-danger">Access</button>
         </div>
       </div>
     </div>
@@ -40,16 +32,36 @@
       document.getElementById("accessId").value = id;
       let data = {id:id}
         console.log(data);
-        let res = await axios.post("/dashboard-view-job",data,HeaderToken())
-        // console.log(res.data["data"]["adminAccess"]);
-        // console.log(res.data["adminAccess"]);
-        // if(res.data["data"]["adminAccess"] === "0"){
-        //   document.getElementById("pending").checked = true;
-        // }
+        let res = await axios.post("/dashboard-admin-access",data,HeaderToken())
+        console.log(res.data["message"]["adminAccess"]);
+        if(res.data["message"]["adminAccess"] === "0"){
+          document.getElementById("pending").checked = true;
+        }
 
-        // if(res.data["data"]["adminAccess"] === "1"){
-        //   document.getElementById("success").checked = true;
-        // }
-        
+        if(res.data["message"]["adminAccess"] === "1"){
+          document.getElementById("success").checked = true;
+        }  
     }
+
+
+
+  async function accessPoint(){
+    let pending = document.getElementById("pending").value;
+    let success = document.getElementById("success").value;
+
+    if(pending){
+      console.log("pending");
+    }else if(success){
+      console.log("success")
+    }
+
+    if(success){
+      
+    }
+
+
+  }
+
+
+ 
   </script>
