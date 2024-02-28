@@ -28,39 +28,41 @@
   </div>
 
   <script>
-    async function fillFormAccess(id){
-      document.getElementById("accessId").value = id;
+    fillFormAccess();
+    async function fillFormAccess(){
+      let id = document.getElementById("accessId").value;
       let data = {id:id}
         console.log(data);
         let res = await axios.post("/dashboard-admin-access",data,HeaderToken())
         console.log(res.data["message"]["adminAccess"]);
+
         if(res.data["message"]["adminAccess"] === "0"){
+          document.getElementById("pending").value = res.data["message"]["adminAccess"]
           document.getElementById("pending").checked = true;
         }
 
         if(res.data["message"]["adminAccess"] === "1"){
+          document.getElementById("success").value = res.data["message"]["adminAccess"];
           document.getElementById("success").checked = true;
         }  
     }
 
 
 
-  async function accessPoint(){
-    let pending = document.getElementById("pending").value;
-    let success = document.getElementById("success").value;
+  // function accessPoint(){
+  //   let success = document.getElementById("success").value;
+  //   let pending = document.getElementById("pending").value;
+  //   if(success){
+  //     console.log("ni");
+  //   }else(pending){
+  //     console.log("ace");
+  //   }
 
-    if(pending){
-      console.log("pending");
-    }else if(success){
-      console.log("success")
-    }
-
-    if(success){
-      
-    }
+    
 
 
-  }
+
+  // }
 
 
  

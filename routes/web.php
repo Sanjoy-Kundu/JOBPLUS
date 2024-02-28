@@ -67,6 +67,7 @@ Route::post("/dashboard-job-insert",     [JobController::class, "dashboardJob"])
 Route::post("/dashboard-delete-job",     [JobController::class, "dashboardJobDelete"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-view-job",       [JobController::class, "dashboardViewJob"])->middleware(["auth:sanctum"]);
 Route::post("/dashboard-job-update",     [JobController::class, "dashboardJobUpdate"])->middleware(["auth:sanctum"]);
+Route::post("/dashboard-admin-access",     [JobController::class, "adminAccess"])->middleware(["auth:sanctum"]);
 
 
 //Frontend 
@@ -80,3 +81,6 @@ Route::get('/contact',   [FrontendController::class,"contactUs"]);
 
 //Frontend job show api call 
 Route::get("/alljobs", [FrontendController::class, "allJobShow"]);
+
+//Frontend customer auth check
+Route::post("/customer-auth-check", [FrontendController::class, "customerAuthCheck"])->middleware(["auth:sanctum"]);

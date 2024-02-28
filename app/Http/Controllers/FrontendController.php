@@ -6,6 +6,7 @@ use App\Models\About;
 use App\Models\Job;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -51,4 +52,27 @@ class FrontendController extends Controller
         }
         
     }
+
+
+    public function customerAuthCheck(){
+        try{
+            $auth  = Auth::id();
+
+            if($auth){
+                return response()->json(["status" => "success", "message"=>"success"]);
+            }else{
+                $fail = 0;
+                return response()->json(["status" => "fail", "message"=>$fail]);
+            }
+            // if(!$auth){
+            //     $fail = 0;
+            //     return response()->json(["status" => "fail", "authFail"=>$fail]);
+            // }
+
+        }catch(Exception $ex){
+
+        }
+    }
+
+
 }

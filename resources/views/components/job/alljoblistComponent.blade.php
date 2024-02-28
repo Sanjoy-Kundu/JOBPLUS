@@ -68,12 +68,13 @@
           tableList.append(row)
         });
 
-        $(".successBtn").on("click",async function(){
+        $(".successBtn").on("click", function(){
           let id = $(this).data("id");
           //console.log(id);
-          //$("#accessId").val(id);
+          $("#accessId").val(id);
           $("#access-modal").modal("show");
-          await fillFormAccess(id)
+          //await fillFormAccess(id)
+          
         })
 
         // $(".viewBtn").on("click", async function(){
