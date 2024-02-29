@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SubmitJobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -84,3 +85,4 @@ Route::get("/alljobs", [FrontendController::class, "allJobShow"]);
 
 //Frontend customer auth check
 Route::post("/customer-auth-check", [FrontendController::class, "customerAuthCheck"])->middleware(["auth:sanctum"]);
+Route::post("/customer-job-apply",  [SubmitJobController::class, "customerJobApply"])->middleware(["auth:sanctum"]);

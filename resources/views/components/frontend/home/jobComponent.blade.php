@@ -18,38 +18,18 @@
 
 
 
-    // async function customerGetProfile(){
-    //     try{
-    //         let res = await axios.get("/user-profile",HeaderToken())
-    //         console.log(res.data["data"]["role"])
-
-    //         if(res.data["data"]["role"] === "candidate"){
-    //             document.getElementById("sixLogin").classList.add("d-none");
-    //         }
-    //         // if(res.data["data"]["role"] === "candidate"){
-    //         //     document.getElementById("candidateApply").classList.remove("d-none");
-    //         // }else{
-    //         //     document.getElementById("candidateLogin").classList.remove("d-none");
-    //         // }
-          
-    //     }
-    //     catch(e){
-    //         console.log(e)
-    //     }  
-    // }
-
-
-
 
     async function showSixJob(){
-        let allJobs = await axios.get("/alljobs");
-        let joblists = allJobs.data["sixjobs"];
-        console.log(joblists);
-        let jobCard = $('#jobCard');
-        for (let key in joblists) {
+        try{
+            let allJobs = await axios.get("/alljobs");
+            let joblists = allJobs.data["sixjobs"];
+            console.log(joblists);
+            let jobCard = $('#jobCard');
+            for (let key in joblists) {
             if (joblists.hasOwnProperty(key)) {
                 let value = joblists[key];
                 //console.log(value); // Output: { job: "..." } for each iteration
+                let id = joblists[key].id
                 let jobTitle = joblists[key].jobTitle
                 let companyName = joblists[key].companyName
                 let employeeStatus = joblists[key].jobEmployeeStatus
@@ -63,6 +43,7 @@
                                 <h6>${jobTitle}</h6>
                                 <p>${companyName}</p>
                                 <div>
+                                    <input type="text" name="job_id" id="job_id_six" value="${id}" class="d-none">
                                     <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location: ${jobLocation}</span></p>
                                     <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i>${employeeStatus}</p>
                                     <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> ${publishDate}</p>
@@ -70,9 +51,10 @@
                                 <p>Salary: ${minumumSalary}</span></p>
                             </div>
                             <div style="display:flex; justify-content:space-between; align-item:center; padding:10px 10px">
-                                <button onclick=userCheck() style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;" id="sixLogin">  
+                                <button onclick="applySixJob()" id="sixapplybtn"  style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;">  
                                     Apply
                                 </button>
+                              
                                 
                             </div>
                         </div>
@@ -80,7 +62,11 @@
             `
             jobCard.append(job)
             }
-        }   
+          }
+        }catch(e){
+            console.log(e)
+        }
+         
     }
 
 
@@ -93,6 +79,7 @@
             if (joblists.hasOwnProperty(key)) {
                 let value = joblists[key];
                 //console.log(value); // Output: { job: "..." } for each iteration
+                let id = joblists[key].id
                 let jobTitle = joblists[key].jobTitle
                 let companyName = joblists[key].companyName
                 let employeeStatus = joblists[key].jobEmployeeStatus
@@ -108,6 +95,7 @@
                                 <h6>${jobTitle}</h6>
                                 <p>${companyName}</p>
                                 <div>
+                                    <input type="text" name="job_id" id="job_id" value="${id}" class="d-none">
                                     <p><i class="fa fa-map-marker text-danger" aria-hidden="true"></i> <span>Location: ${jobLocation}</span></p>
                                     <p><i class="fa fa-briefcase text-primary" aria-hidden="true"></i>${employeeStatus}</p>
                                     <p><i class="fa fa-calendar text-primary" aria-hidden="true"></i> ${publishDate}</p>
@@ -115,8 +103,8 @@
                                 <p>Salary: ${minumumSalary}</span></p>
                             </div>
                             <div style="display:flex; justify-content:space-between; align-item:center; padding:10px 10px">
-                                <button style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;">Login</button>
-                                <button style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;" >Apply</button>
+                                <button onclick="applyAllJob()" style="width: 100px;background-color: #49c849; padding: 8px 2px;border: 1px solid #d3cfcf;color: white;font-weight: bolder;" >Apply</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -147,6 +135,56 @@
     }
 
 
+
+
+
+
+    async function applySixJob(){
+      let jobId = document.getElementById("job_id_six").value 
+      let data = {
+        job_id:jobId
+      }
+      let res = await axios.post("/customer-job-apply",data,HeaderToken());
+
+      if(res.data["status"] === "success"){
+        successToast(res.data["message"])
+      }
+
+    }
+
+    async function applyAllJob(){
+        let jobId = document.getElementById("job_id").value 
+        let data = {
+        job_id:jobId
+      }
+      let res = await axios.post("/customer-job-apply",data,HeaderToken());
+
+      if(res.data["status"] === "success"){
+        successToast(res.data["message"])
+      }
+  
+    }
+
+
+
+
+
+
+
+
+
+    let check = HeaderToken();
+    let authChekc = check.headers.Authorization
+    console.log(authChekc);
+
+if(authChekc === null ){
+        console.log("login route e jabe")
+}else{
+    console.log("apply korbo")
+}
+
+
+    
  
 </script>
 

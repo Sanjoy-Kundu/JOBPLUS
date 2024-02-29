@@ -2,7 +2,6 @@
 
     <!-- Page Heading -->
     <div class="">
-        <button class="btn btn-success" id="cadidateHide"><a href="#" style="text-decoration: none; color:white">CANDIDATE APPLYING LISTS</a></button>
         <button class="btn btn-success" id="cadidateHide"><a href="{{url('/dashboard-job')}}" target="_blank" style="text-decoration: none; color:white">ADD YOUR POST</a></button>
     </div>
 
@@ -35,6 +34,7 @@
       try{
         let res = await axios.get("/dashboard-job-lists",HeaderToken())
         let joblists = res.data["joblists"];
+        let candidateApplyinglists = res.data["candidateApply"];
 
 
         //console.log(joblists)
@@ -46,6 +46,32 @@
 
         joblists.forEach((item,index) => {
           console.log(item["adminAccess"])
+          console.log(item)
+          // console.log(item["jobPublishDate"])
+       
+          let row = ` 
+                      <tr>
+                            <th scope="row">${index+1}</th>
+                            <td>========</td>
+                            <td>===</td>
+                            <td>===</td>
+                            <td>
+                             ====
+                              </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-danger deleteBtn"  data-id="${item['id']}">DELETE</button>
+                                </div>
+                            </td>
+                        </tr>
+          `
+          tableList.append(row)
+        });
+
+
+        candidateApplyinglists.forEach((item,index) => {
+          console.log(item["user_id"])
+          console.log(item["job_id"])
           // console.log(item["jobTitle"])
           // console.log(item["jobPublishDate"])
        
@@ -69,6 +95,34 @@
           `
           tableList.append(row)
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $(".deleteBtn").on("click",function(){
           let deleteId = $(this).data("id");

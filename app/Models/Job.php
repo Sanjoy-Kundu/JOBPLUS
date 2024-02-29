@@ -24,4 +24,8 @@ class Job extends Model
      ];
 
      protected $attributes = ["adminAccess" => "0"];
+
+
+
+     
 }

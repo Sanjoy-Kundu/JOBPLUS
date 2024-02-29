@@ -28,6 +28,9 @@
   <script src="{{asset('assets/frontend')}}/assets/js/jquery.min.js"></script>
   <script src="{{asset('assets/backend')}}/js/axios.min.js"></script>
   <script src="{{asset('assets/backend')}}/js/config.js"></script>
+  <script src="{{asset('assets/backend')}}/js/config.js"></script>
+  <script src="{{asset('assets/backend')}}/js/toastify-js.js"></script>
+
 
   <!-- Template Main CSS File -->
   <link href="{{asset('assets/frontend')}}/assets/css/style.css" rel="stylesheet">

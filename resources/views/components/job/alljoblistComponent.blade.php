@@ -35,6 +35,7 @@
 
         let res = await axios.get("/dashboard-job-lists",HeaderToken())
         let joblists = res.data["allJobs"];
+        let cadidateJobs = res.data["candidateApply"]
 
 
         //console.log(joblists)
@@ -67,6 +68,46 @@
           `
           tableList.append(row)
         });
+
+
+
+        cadidateJobs.forEach((item,index) => {
+          console.log(item["user_id"])
+          console.log(item["job_id"])
+          // console.log(item["jobTitle"])
+          // console.log(item["jobPublishDate"])
+       
+          // let row = ` 
+          //             <tr>
+          //                   <th scope="row">${index+1}</th>
+          //                   <td>${item["jobTitle"]}</td>
+          //                   <td>${item["jobPublishDate"]}</td>
+          //                   <td>${item["minumumSalary"]}</td>
+          //                   <td>
+          //                     ${item["adminAccess"] == 0 ? "pending":"succes"}
+          //                     </td>
+          //                   <td>
+          //                       <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          //                           <button type="button" class="btn btn-warning successBtn"  data-id="${item['id']}">Access</button>
+          //                       </div>
+          //                   </td>
+          //               </tr>
+          // `
+          // tableList.append(row)
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $(".successBtn").on("click", function(){
           let id = $(this).data("id");

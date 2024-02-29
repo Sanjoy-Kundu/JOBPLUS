@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\submitJob;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +68,8 @@ class JobController extends Controller
             $user_id = Auth::id();
             $allJobLists = Job::all();
             $joblist = Job::where("user_id","=",$user_id)->get();
-            return response()->json(["status" => "success", "joblists"=>$joblist, "allJobs" => $allJobLists]);
+            $candidateJobApply = submitJob::where("user_id","=",$user_id)->get();
+            return response()->json(["status" => "success", "joblists"=>$joblist, "allJobs" => $allJobLists, "candidateApply"=>$candidateJobApply]);
 
         }catch(Exception $ex){
             return response()->json(["status" => "fail", "message" => $ex->getMessage()]);
